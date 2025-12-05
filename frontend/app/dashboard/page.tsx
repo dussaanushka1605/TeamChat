@@ -22,6 +22,7 @@ interface Group {
   code: string;
   description: string;
   members: Array<{ anonymousName: string }>;
+  memberCount?: number;
   createdAt: string;
 }
 
@@ -345,7 +346,7 @@ export default function AdminDashboard() {
                 <CardHeader>
                   <CardTitle>{group.name}</CardTitle>
                   <CardDescription>
-                    {group.memberCount || group.members?.length || 0} {group.memberCount === 1 || (group.members?.length === 1) ? 'member' : 'members'}
+                    {group.memberCount ?? group.members?.length ?? 0} {(group.memberCount ?? group.members?.length ?? 0) === 1 ? 'member' : 'members'}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

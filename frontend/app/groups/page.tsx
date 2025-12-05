@@ -22,6 +22,7 @@ interface Group {
   description: string;
   userAnonymousName?: string;
   members: Array<{ anonymousName: string }>;
+  memberCount?: number;
 }
 
 interface Announcement {
@@ -329,7 +330,7 @@ export default function GroupsPage() {
                 <CardHeader>
                   <CardTitle>{group.name}</CardTitle>
                   <CardDescription>
-                    {group.memberCount || group.members?.length || 0} {group.memberCount === 1 || (group.members?.length === 1) ? 'member' : 'members'}
+                    {group.memberCount ?? group.members?.length ?? 0} {(group.memberCount ?? group.members?.length ?? 0) === 1 ? 'member' : 'members'}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

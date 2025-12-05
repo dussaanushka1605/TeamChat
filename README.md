@@ -223,16 +223,20 @@ Start command: `npm start` (run from `backend/` directory)
 
 The project includes `netlify.toml` for Netlify deployment.
 
-1. Set environment variable:
-   - `NEXT_PUBLIC_API_URL` - Your deployed backend URL
+**Netlify Setup:**
+1. Base directory: `frontend`
+2. Build command: `npm run build`
+3. Publish directory: `frontend/.next`
+4. Set environment variable:
+   - `NEXT_PUBLIC_API_URL` = `https://teamchat-1-llwr.onrender.com`
 
-2. Build command: `npm run build` (runs automatically on Netlify)
-
-3. Publish directory: `.next`
+**After deployment:**
+- Update backend `FRONTEND_URL` in Render with your Netlify URL
+- See `NETLIFY_DEPLOYMENT.md` for detailed steps
 
 **OR** for Vercel:
 - Connect your GitHub repository
-- Set `NEXT_PUBLIC_API_URL` environment variable
+- Set `NEXT_PUBLIC_API_URL` = `https://teamchat-1-llwr.onrender.com`
 - Deploy automatically
 
 ## 7. Assumptions & Limitations
