@@ -2,7 +2,12 @@
 
 A full-stack real-time team chat application where users can communicate in channels with instant messaging, presence tracking, and message management features.
 
-## 1. Overview
+## 🚀 Live Application
+
+- **Frontend:** [https://teamchatroom.netlify.app/](https://teamchatroom.netlify.app/)
+- **Backend API:** [https://teamchat-1-llwr.onrender.com](https://teamchat-1-llwr.onrender.com)
+
+## Overview
 
 This is a complete full-stack project implementing:
 
@@ -13,16 +18,14 @@ This is a complete full-stack project implementing:
 - ✅ Message history with pagination support
 - ✅ Deployed, publicly accessible application
 
-## 2. Core Requirements
+## Core Requirements
 
-### 2.1 User Accounts
-
+### User Accounts
 - Users can sign up and log in
 - Authentication implemented using JWT tokens
 - Users remain logged in on page refresh (sessionStorage)
 
-### 2.2 Channels
-
+### Channels
 Users can:
 - View existing channels
 - Create new channels
@@ -34,8 +37,7 @@ Channel information displayed:
 - Member count
 - Member list with online/offline status
 
-### 2.3 Real-Time Messaging
-
+### Real-Time Messaging
 - Messages appear instantly to all users in the same channel
 - Implemented using Socket.io (WebSockets)
 - Every message is stored in MongoDB database
@@ -45,25 +47,20 @@ Message structure includes:
 - Channel (groupId)
 - Text content
 - Timestamp
-- File attachments (text files)
-- Auto-delete settings
 
-### 2.4 Online Status (Presence)
-
+### Online Status (Presence)
 - Shows which users are currently online
 - Presence tracking works across multiple browser tabs and users
 - Real-time updates via Socket.io
 - Graceful disconnect handling (8-second grace period)
 - Last active timestamp for offline users
 
-### 2.5 Message History & Pagination
-
+### Message History & Pagination
 - When opening a channel, recent messages are loaded
 - API supports pagination with `limit` and `skip` parameters
 - Messages are sorted by creation time (oldest first)
 
-### 2.6 Frontend Interface
-
+### Frontend Interface
 Clean and functional interface providing:
 - Channel list view
 - Channel creation dialog
@@ -73,7 +70,7 @@ Clean and functional interface providing:
 - Online/offline indicators in members panel
 - Real-time message updates
 
-## 3. Optional Add-Ons (Bonus)
+## Optional Features Implemented
 
 The following optional features have been implemented:
 
@@ -87,7 +84,7 @@ The following optional features have been implemented:
 - ✅ **User blocking** - Block/unblock users to prevent messaging
 - ✅ **User reporting** - Report users for inappropriate behavior
 
-## 4. Tech Stack
+## Tech Stack
 
 ### Backend
 - **Node.js** - Runtime environment
@@ -98,6 +95,7 @@ The following optional features have been implemented:
 - **bcryptjs** - Password hashing
 - **CORS** - Cross-origin resource sharing
 - **dotenv** - Environment variable management
+- **uuid** - Unique identifier generation
 
 ### Frontend
 - **Next.js 14** - React framework with App Router
@@ -114,7 +112,7 @@ The following optional features have been implemented:
 ### Database
 - **MongoDB Atlas** - Cloud-hosted MongoDB database
 
-## 5. Setup & Run Instructions
+## Setup & Run Instructions
 
 ### Prerequisites
 
@@ -125,8 +123,8 @@ The following optional features have been implemented:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd WebChat
+git clone https://github.com/dussaanushka1605/TeamChat.git
+cd TeamChat
 ```
 
 ### Step 2: Backend Setup
@@ -207,56 +205,27 @@ start-frontend.bat
 
 4. **Create/Join Channels:** Start chatting!
 
-## 6. Deployment
-
-### Backend Deployment (Render/Railway/Heroku/VM)
-
-Environment variables to set:
-- `MONGO_URI` - MongoDB Atlas connection string
-- `JWT_SECRET` - Strong random string for JWT signing
-- `FRONTEND_URL` - Your deployed frontend URL
-- `PORT` - Server port (if host doesn't provide automatically)
-
-Start command: `npm start` (run from `backend/` directory)
-
-### Frontend Deployment (Netlify/Vercel)
-
-The project includes `netlify.toml` for Netlify deployment.
-
-**Netlify Setup:**
-1. Base directory: `frontend`
-2. Build command: `npm run build`
-3. Publish directory: `frontend/.next`
-4. Set environment variable:
-   - `NEXT_PUBLIC_API_URL` = `https://teamchat-1-llwr.onrender.com`
-
-**After deployment:**
-- Update backend `FRONTEND_URL` in Render with your Netlify URL
-- See `NETLIFY_DEPLOYMENT.md` for detailed steps
-
-**OR** for Vercel:
-- Connect your GitHub repository
-- Set `NEXT_PUBLIC_API_URL` = `https://teamchat-1-llwr.onrender.com`
-- Deploy automatically
-
-## 7. Assumptions & Limitations
+## Assumptions & Limitations
 
 ### Assumptions
 - Authentication tokens stored in `sessionStorage` (per-tab isolation)
 - MongoDB Atlas is used for database hosting
 - Socket.io WebSocket transport is preferred
 - File uploads limited to text-based files for security
+- Users must join channels using channel codes
 
 ### Limitations
 - File sharing supports text files only (.txt, .md, .json, code files)
 - Message pagination API is ready but UI pagination controls not yet implemented
 - Presence updates have an 8-second grace period on disconnect
 - Session storage means users need to log in again in new tabs
+- No private channels feature (all channels are public)
+- No message search functionality
 
-## 8. Project Structure
+## Project Structure
 
 ```
-WebChat/
+TeamChat/
 ├── backend/
 │   ├── middleware/
 │   │   └── auth.js          # JWT authentication middleware
@@ -281,10 +250,11 @@ WebChat/
 │   └── lib/                 # Utilities (API, Socket)
 ├── README.md
 ├── netlify.toml            # Netlify deployment config
-└── start-backend.bat       # Windows helper script
+├── start-backend.bat       # Windows helper script
+└── start-frontend.bat      # Windows helper script
 ```
 
-## 9. API Endpoints
+## API Endpoints
 
 ### Authentication
 - `POST /api/auth/signup` - Register new user
@@ -311,7 +281,7 @@ WebChat/
 - `GET /api/block/blocked` - Get blocked users list
 - `POST /api/block/report` - Report a user
 
-## 10. Socket.io Events
+## Socket.io Events
 
 ### Client to Server
 - `join-group` - Join a channel room
@@ -332,11 +302,24 @@ WebChat/
 - `typing` - User is typing
 - `stop-typing` - User stopped typing
 
-## 11. License
+## Deployment
+
+### Backend (Render)
+- **URL:** https://teamchat-1-llwr.onrender.com
+- Environment variables: `MONGO_URI`, `JWT_SECRET`, `FRONTEND_URL`, `PORT`
+- Start command: `npm start`
+
+### Frontend (Netlify)
+- **URL:** https://teamchatroom.netlify.app/
+- Environment variable: `NEXT_PUBLIC_API_URL` = `https://teamchat-1-llwr.onrender.com`
+- Build command: `npm run build`
+- Publish directory: `frontend/.next`
+
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 12. Author
+## Author
 
 **Anushka Dussa**
 - GitHub: [@dussaanushka1605](https://github.com/dussaanushka1605)
