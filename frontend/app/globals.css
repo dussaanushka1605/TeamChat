@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+    --muted: 214 32% 91%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 100% 95%;
+    --accent-foreground: 222 47% 11%;
+    --bubble-received: 214 32% 91%;
+    --bubble-sent: 217 91% 60%;
+    --border: 214 32% 91%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 217 91% 60%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+    --bubble-received: 217 33% 17%;
+    --bubble-sent: 217 91% 60%;
+    --border: 217 33% 17%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 217 91% 60%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-card/50 backdrop-blur-sm border border-border;
+  }
+}
+
+.message-row {
+  display: flex;
+  margin: 8px 0;
+}
+.message-row.left {
+  justify-content: flex-start;
+}
+.message-row.right {
+  justify-content: flex-end;
+}
+.message-bubble {
+  border-radius: 12px;
+  padding: 10px 12px;
+  max-width: 70%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+.bubble-left {
+  background: #ffffff;
+  color: #111827;
+}
+.bubble-right {
+  background: #d9fdd3;
+  color: #111827;
+}
+.sender-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
